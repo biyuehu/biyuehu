@@ -1,0 +1,404 @@
+:root {
+	--paper: #faf8f3;
+	--card: #ffffff;
+	--ink: #23211d;
+	--ink-soft: #6b6862;
+	--line: #e6e2d8;
+	--wechat: #07c160;
+	--alipay: #1677ff;
+	--btc: #d97706;
+	--radius: 14px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--paper);
+	color: var(--ink);
+	font-family: "Space Grotesk", sans-serif;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 64px 20px 48px;
+}
+
+a {
+	color: inherit;
+}
+
+.mono {
+	font-family: "JetBrains Mono", monospace;
+	letter-spacing: 0.04em;
+}
+
+.eyebrow {
+	font-size: 12px;
+	letter-spacing: 0.2em;
+	color: var(--ink-soft);
+	text-transform: uppercase;
+	margin-bottom: 18px;
+}
+
+.hero {
+	text-align: center;
+	max-width: 640px;
+	margin-bottom: 56px;
+}
+
+.hero h1 {
+	font-weight: 700;
+	font-size: clamp(34px, 6vw, 54px);
+	letter-spacing: -0.01em;
+	line-height: 1.15;
+	margin-bottom: 18px;
+}
+
+.hero p {
+	color: var(--ink-soft);
+	font-size: 17px;
+	line-height: 1.75;
+}
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+	max-width: 900px;
+	width: 100%;
+}
+
+.card {
+	background: var(--card);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	padding: 32px 24px;
+	cursor: pointer;
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease,
+		border-color 0.25s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.card:hover,
+.card:focus-visible {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 28px rgba(35, 33, 29, 0.08);
+}
+
+.card[data-c="wechat"]:hover {
+	border-color: var(--wechat);
+}
+
+.card[data-c="alipay"]:hover {
+	border-color: var(--alipay);
+}
+
+.card[data-c="btc"]:hover {
+	border-color: var(--btc);
+}
+
+.card-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+
+.card[data-c="wechat"] .card-dot {
+	background: var(--wechat);
+}
+
+.card[data-c="alipay"] .card-dot {
+	background: var(--alipay);
+}
+
+.card[data-c="btc"] .card-dot {
+	background: var(--btc);
+}
+
+.card-title {
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.card-sub {
+	font-size: 12px;
+	color: var(--ink-soft);
+}
+
+.card-cta {
+	margin-top: 8px;
+	font-size: 14px;
+	color: var(--ink-soft);
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.card-cta::after {
+	content: "→";
+	transition: transform 0.25s ease;
+}
+
+.card:hover .card-cta::after {
+	transform: translateX(4px);
+}
+
+/* modal */
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(35, 33, 29, 0.55);
+	backdrop-filter: blur(4px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+	z-index: 100;
+	padding: 20px;
+}
+
+.overlay.open {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.modal {
+	background: var(--card);
+	border-radius: 20px;
+	width: 100%;
+	max-width: 420px;
+	padding: 32px 28px 28px;
+	position: relative;
+	transform: scale(0.94) translateY(8px);
+	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+	box-shadow: 0 24px 64px rgba(35, 33, 29, 0.25);
+	max-height: 90vh;
+	overflow-y: auto;
+}
+
+.overlay.open .modal {
+	transform: scale(1) translateY(0);
+}
+
+.modal-close {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: none;
+	background: var(--paper);
+	color: var(--ink-soft);
+	font-size: 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s ease;
+}
+
+.modal-close:hover {
+	background: var(--line);
+}
+
+.modal-head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.modal-title {
+	font-weight: 600;
+	font-size: 21px;
+}
+
+.modal-sub {
+	font-size: 12px;
+	color: var(--ink-soft);
+}
+
+.qr-wrap {
+	border-radius: 12px;
+	padding: 16px;
+	max-width: 320px;
+	margin: 0 auto 16px;
+	display: block;
+}
+
+#modal-wechat .qr-wrap,
+#modal-alipay .qr-wrap {
+	background: #fff;
+	border: 1px solid var(--line);
+}
+
+#modal-btc .qr-wrap {
+	background: #fff;
+	border: 2px solid var(--btc);
+}
+
+.qr-wrap img {
+	width: 100%;
+	display: block;
+	border-radius: 4px;
+}
+
+.qr-wrap:hover img {
+	opacity: 0.92;
+}
+
+.hint {
+	text-align: center;
+	font-size: 14px;
+	color: var(--ink-soft);
+	margin-bottom: 4px;
+}
+
+.btc-address {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 12.5px;
+	background: var(--paper);
+	border: 1px solid var(--line);
+	padding: 10px 12px;
+	border-radius: 6px;
+	word-break: break-all;
+	margin: 14px 0 10px;
+	line-height: 1.5;
+}
+
+.btc-meta {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 11px;
+	color: var(--ink-soft);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 2px 10px;
+	border-bottom: 1px dashed var(--line);
+	margin-bottom: 4px;
+}
+
+.copy-btn {
+	display: block;
+	width: 100%;
+	background: transparent;
+	border: 1.5px solid var(--line);
+	color: var(--ink);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 13px;
+	padding: 11px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	margin-top: 4px;
+}
+
+#modal-wechat .copy-btn:hover,
+#modal-wechat .copy-btn.copied {
+	border-color: var(--wechat);
+}
+
+#modal-alipay .copy-btn:hover,
+#modal-alipay .copy-btn.copied {
+	border-color: var(--alipay);
+}
+
+#modal-btc .copy-btn:hover,
+#modal-btc .copy-btn.copied {
+	border-color: var(--btc);
+}
+
+.copy-btn.copied {
+	color: #fff;
+}
+
+#modal-wechat .copy-btn.copied {
+	background: var(--wechat);
+}
+
+#modal-alipay .copy-btn.copied {
+	background: var(--alipay);
+}
+
+#modal-btc .copy-btn.copied {
+	background: var(--btc);
+}
+
+.why-section {
+	max-width: 600px;
+	margin-top: 64px;
+	padding-top: 40px;
+	border-top: 1px solid var(--line);
+	text-align: center;
+}
+
+.why-label {
+	font-size: 12px;
+	letter-spacing: 0.2em;
+	color: var(--ink-soft);
+	margin-bottom: 16px;
+}
+
+.why-body {
+	font-size: 16px;
+	line-height: 1.85;
+	color: var(--ink-soft);
+}
+
+.about {
+	margin-top: 40px;
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
+	font-size: 14px;
+}
+
+.about a {
+	text-decoration: none;
+	color: var(--ink-soft);
+	border-bottom: 1px solid var(--line);
+	padding-bottom: 2px;
+	transition:
+		color 0.2s ease,
+		border-color 0.2s ease;
+}
+
+.about a:hover {
+	color: var(--ink);
+	border-color: var(--ink);
+}
+
+@media (max-width: 720px) {
+	body {
+		padding: 48px 16px 40px;
+	}
+
+	.cards {
+		grid-template-columns: 1fr;
+	}
+
+	.hero {
+		margin-bottom: 40px;
+	}
+
+	.why-section {
+		margin-top: 48px;
+		padding-top: 32px;
+	}
+
+	.about {
+		gap: 14px 20px;
+	}
+}

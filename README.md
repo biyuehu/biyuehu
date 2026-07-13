@@ -1,31 +1,31 @@
 ### 👋 Hi there
 
 - 🧩 The best like character is [Himeno Sena(姬野星奏)](https://himeno-sena.com) and [Arimura Romi(有村ロミ)](https://arimuraromi.com)
-- 🌱 I'm currently learning Idris2 and Type Theory
-- 👯 Blog: [HotaruBlog](https://hotaru.icu)
+- 🌱 Enjoys various programming languages, type theory, literature (except Chinese), general history, Continental philosophy and analytic philosophy, theology
+- 🎨 Rejecting a sense of identity
+- 🔥 Freedom and democracy
+- 📏 Reject sexual minorities
+- 👯 Blog: [Romi Nest](https://i.arimuraromi.com/)
 <!-- - 🧊 Bangumi: [himeno](https://bgm.tv/user/himeno) -->
 - 📫 Email：[me@hotaru.icu](mailto://me@hotaru.icu)
 <!-- - 💬 Dream: Immigrate to Japan -->
 <!-- and become a Japanese -->
 
-### 🔗 Skills
+### 🔗 More
 
 ```idris
-record Skills where
-    constructor MkSkills
-    languages : List String
-    operationSystems : List String
-    storages : List String
-    framework : List String
-    frontFrameworks : List String
+record ArimuraSena where
+    constructor MkArimuraSena
 
-skills : Skills
-skills = MkSkills
-    ["TypeScript", "Rust", "C", "Haskell", "Ocaml", "Python", "Lua", "PHP"]
-    ["Linux", "Windows"]
-    ["SQLite", "MySQL"]
-    ["NestJs", "Rocket.rs", "Tauri", "Leptos", "Laravel"]
-    ["Solid", "React", "Angular", "Lit", "Vue3"]
+    usedLanguages : List String -- only programming languages that I have written project by
+    hatedLanguages: List String
+    operationSystems : List String
+
+arimuraSena : ArimuraSena
+arimuraSena = MkArimuraSena
+    ["TypeScript", "Rust", "Haskell", "MoonBit", "C", "Ocaml", "Python", "Lua", "PHP", "JavaScript", "Swift", "Teal", "Gleam", "Idris", "Scala", "ReScript", "Elm", "PureScript", "Scheme"]
+    ["Java", "C#", "Go", "CPP"]
+    ["Windows", "Ubuntu]
 ```
 
 <!--
@@ -57,7 +57,6 @@ skills = MkSkills
 <a href="https://www.google.com/chrome/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" alt="chrome" width="40" height="40"/> </a>
 </div> -->
 
-
 ### 💻 Stats
 
 <div align="center">
@@ -66,4 +65,3 @@ skills = MkSkills
 ![Most Used Languages](https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=biyuehu&layout=compact&langs_count=10&theme=algolia)
 
 </div>
-

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support · Arimura Sena</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="hero">
+    <div class="eyebrow mono">SUPPORT · THREE CHANNELS</div>
+    <h1>Support the work<br>behind these projects</h1>
+    <p>Whatever brought you here — a tool, a repo, a post — this is the one place to send something back. Pick whichever
+      channel is easiest.</p>
+  </div>
+  <div class="cards">
+    <div class="card" data-c="wechat" tabindex="0" onclick="openModal('wechat')"
+      onkeydown="if(event.key==='Enter')openModal('wechat')">
+      <span class="card-dot"></span>
+      <div class="card-title">WeChat Pay</div>
+      <div class="card-sub mono">CHINA · MOBILE</div>
+      <div class="card-cta">View QR code</div>
+    </div>
+    <div class="card" data-c="alipay" tabindex="0" onclick="openModal('alipay')"
+      onkeydown="if(event.key==='Enter')openModal('alipay')">
+      <span class="card-dot"></span>
+      <div class="card-title">Alipay</div>
+      <div class="card-sub mono">CHINA · MOBILE</div>
+      <div class="card-cta">View QR code</div>
+    </div>
+    <div class="card" data-c="btc" tabindex="0" onclick="openModal('btc')"
+      onkeydown="if(event.key==='Enter')openModal('btc')">
+      <span class="card-dot"></span>
+      <div class="card-title">Bitcoin</div>
+      <div class="card-sub mono">BTC · ON-CHAIN</div>
+      <div class="card-cta">View address</div>
+    </div>
+  </div>
+  <div class="why-section">
+    <div class="why-label mono">WHY DONATE</div>
+    <p class="why-body">
+      Everything here is made independently, in my own time, without sponsorship or ads.
+      Donating doesn't unlock anything — nothing is gated behind it. It simply helps cover
+      the time and tools that go into what I build, and makes it more likely I keep building it.
+      There's no obligation. If something here was useful or interesting to you, that's already enough.
+      <br>
+      <br>
+      You can leave a message directly, or after sponsoring, send your message along with the payment receipt to the
+      email. The sponsor list will be updated regularly.
+    </p>
+  </div>
+  <div class="about mono">
+    <span>Arimura Sena</span>
+    <a href="https://github.com/biyuehu" target="_blank" rel="noopener">GitHub / biyuehu</a>
+    <a href="https://codeberg.org/lomi" target="_blank" rel="noopener">Codeberg / lomi</a>
+    <a href="mailto:biyuehuya@gmail.com">biyuehuya@gmail.com</a>
+  </div>
+  <div class="overlay" id="overlay" onclick="if(event.target===this) closeModal()">
+    <div class="modal" id="modal-wechat" style="display:none;">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-head">
+        <span class="card-dot" style="background:var(--wechat)"></span>
+        <div>
+          <div class="modal-title">WeChat Pay</div>
+          <div class="modal-sub mono">SCAN TO SEND</div>
+        </div>
+      </div>
+      <a class="qr-wrap" href="wechat.png" target="_blank" rel="noopener">
+        <img src="wechat.png" alt="WeChat Pay QR code">
+      </a>
+      <div class="hint">Open WeChat and scan this code — or tap it to open full size</div>
+    </div>
+    <div class="modal" id="modal-alipay" style="display:none;">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-head">
+        <span class="card-dot" style="background:var(--alipay)"></span>
+        <div>
+          <div class="modal-title">Alipay</div>
+          <div class="modal-sub mono">SCAN TO SEND</div>
+        </div>
+      </div>
+      <a class="qr-wrap" href="alipay.png" target="_blank" rel="noopener">
+        <img src="alipay.png" alt="Alipay QR code">
+      </a>
+      <div class="hint">Open Alipay and scan this code — or tap it to open full size</div>
+    </div>
+    <div class="modal" id="modal-btc" style="display:none;">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-head">
+        <span class="card-dot" style="background:var(--btc)"></span>
+        <div>
+          <div class="modal-title">Bitcoin</div>
+          <div class="modal-sub mono">ON-CHAIN ADDRESS</div>
+        </div>
+      </div>
+      <a class="qr-wrap" href="btc.png" target="_blank" rel="noopener">
+        <img src="btc.png" alt="BTC wallet QR code">
+      </a>
+      <div class="btc-meta">
+        <span>NETWORK</span>
+        <span>mainnet</span>
+      </div>
+      <div class="btc-address mono" id="btc-address">bc1qe0kn3hkqls54rfrjkj5ezcyvtk8suxcy0lfz3r</div>
+      <button type="button" class="copy-btn" id="btc-copy" onclick="copyBTC()">Copy address</button>
+    </div>
+  </div>
+  <script>
+    function openModal(id) {
+      for (const m of document.querySelectorAll('.modal')) m.style.display = 'none';
+      document.getElementById(`modal-${id}`).style.display = 'block';
+      document.getElementById('overlay').classList.add('open');
+    }
+    function closeModal() {
+      document.getElementById('overlay').classList.remove('open');
+    }
+    function copyBTC() {
+      navigator.clipboard.writeText(document.getElementById('btc-address').textContent).then(() => {
+        const btn = document.getElementById('btc-copy');
+        const original = btn.textContent;
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+
+</html>
