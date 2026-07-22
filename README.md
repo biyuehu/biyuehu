@@ -61,7 +61,7 @@ arimuraSena = MkArimuraSena
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats-mocha-eta-99.vercel.app/api?username=biyuehu&show_icons=true&theme=algolia&include_all_commits=true&count_private=true&all_time_contribs=true)
-![Most Used Languages](https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=biyuehu&layout=compact&langs_count=10&theme=algolia)
+![GitHub Stats](https://github-readme-stats-seven-alpha-17.vercel.app/api?username=biyuehu&show_icons=true&theme=algolia&include_all_commits=true&count_private=true&all_time_contribs=true)
+![Most Used Languages](https://github-readme-stats-seven-alpha-17.vercel.app/api/top-langs/?username=biyuehu&layout=compact&langs_count=10&theme=algolia)
 
 </div>
